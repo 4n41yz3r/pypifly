@@ -39,7 +39,7 @@ class IterableFilter():
 
     def take(self, arr):
         for i in range(arr.length):
-            if (self._filters[i] is None)
+            if (self._filters[i] is None):
                 self._filters[i] = self._type(self._length)
             self._filters[i].take(arr[i])
 
