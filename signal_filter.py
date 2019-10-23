@@ -30,6 +30,14 @@ class MedianFilter(Filter):
             return sorted(lst)[quotient]
         return sum(sorted(lst)[quotient - 1:quotient + 1]) / 2.
 
+class AverageFilter(Filter):
+    def __init__(self, length):
+        Filter.__init__(self, length, lambda x: AverageFilter.average(x))
+
+    @staticmethod
+    def average(lst):
+        return sum(lst) / len(lst)
+
 class IterableFilter():
     _filters = []
 
