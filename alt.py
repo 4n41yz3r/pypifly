@@ -33,4 +33,3 @@ class Altimeter:
 
 a = Altimeter()
 a.demo()
-

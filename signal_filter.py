@@ -3,8 +3,8 @@
 class Filter:
     _length = 1
     _raw = []
-    value = 0
-    new = True
+    _value = 0
+    _new = True
 
     def __init__(self, length, fn):
         self._length = length
@@ -13,11 +13,19 @@ class Filter:
     def take(self, value):
         self._raw.append(value)
         if len(self._raw) >= self._length:
-            self.value = self._fn(self._raw)
+            self._value = self._fn(self._raw)
             self._raw = []
-            self.new = True
+            self._new = True
         else:
-            self.new = False
+            self._new = False
+
+    @property
+    def value(self):
+        return self._value
+
+    @property
+    def new(self):
+        return self._new
     
 class MedianFilter(Filter):
     def __init__(self, length):
@@ -53,12 +61,14 @@ class IterableFilter():
                 self._filters[i] = self._type(self._length)
             self._filters[i].take(arr[i])
 
+    @property
     def value(self):
         result = []
         for f in self._filters:
             result.append(f.value)
         return result
 
+    @property
     def new(self):
         for f in self._filters:
             return f.new
