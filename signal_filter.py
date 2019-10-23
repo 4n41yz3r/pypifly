@@ -41,20 +41,22 @@ class AverageFilter(Filter):
 class IterableFilter():
     _filters = []
 
-    def _init__(self, filter_type, length = 10):
+    def __init__(self, filter_type, length = 10):
         self._type = filter_type
         self._length = length
 
     def take(self, arr):
-        for i in range(arr.length):
-            if (self._filters[i] is None):
+        if len(self._filters) < len(arr):
+            self._filters = [None] * len(arr)
+        for i in range(len(arr)):
+            if self._filters[i] is None:
                 self._filters[i] = self._type(self._length)
             self._filters[i].take(arr[i])
 
     def value(self):
         result = []
         for f in self._filters:
-            result.add(f.value)
+            result.append(f.value)
         return result
 
     def new(self):
