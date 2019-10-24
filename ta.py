@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 sys.path.append('./mpu9250/mpu9250')
@@ -15,7 +15,7 @@ try:
         a = imu.accel
         f.take(a)
         if f.new:
-            print 'Accel: {:.3f} {:.3f} {:.3f} mg'.format(*(f.value))
+            print('Accel: {:.3f} {:.3f} {:.3f} mg'.format(*(f.value)))
         sleep(0.005)
 except KeyboardInterrupt:
-    print 'bye ...'
+    print('bye ...')

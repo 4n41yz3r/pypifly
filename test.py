@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 sys.path.append('./mpu9250/mpu9250')
@@ -9,23 +9,16 @@ import math
 
 imu = mpu9250()
 
-def magnitude(v):
-    return math.sqrt(sum(map(lambda x: x * x, v)))
-
-def normalize(v):
-    m = magnitude(v)
-    return map(lambda x: x / m, v)
-
 try:
     while True:
         a = imu.accel
-        print '{:.3f} {:.3f} {:.3f} mg '.format(*(a)),
+        print('{:.3f} {:.3f} {:.3f} mg '.format(*(a)), end='')
         g = imu.gyro
-        print '{:.3f} {:.3f} {:.3f} dps '.format(*(g)),
+        print('{:.3f} {:.3f} {:.3f} dps '.format(*(g)), end='')
         m = imu.mag
-        print '{:.3f} {:.3f} {:.3f} mT '.format(*(m)),
+        print('{:.3f} {:.3f} {:.3f} mT '.format(*(m)), end='')
         m = imu.temp
-        print '{:.3f} C'.format(m)
+        print('{:.3f} C'.format(m))
         sleep(0.1)
 except KeyboardInterrupt:
-    print 'bye ...'
+    print('bye ...')

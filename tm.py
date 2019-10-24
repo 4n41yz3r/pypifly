@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 sys.path.append('./mpu9250/mpu9250')
@@ -16,7 +16,7 @@ try:
         m = imu.mag
         f.take(m)
         if f.new:
-            print 'Mag: {:.3f} {:.3f} {:.3f} mg'.format(*(f.value))
+            print('Mag: {:.3f} {:.3f} {:.3f} mg'.format(*(f.value)))
         sleep(0.01)
 except KeyboardInterrupt:
-    print 'bye ...'
+    print('bye ...')
