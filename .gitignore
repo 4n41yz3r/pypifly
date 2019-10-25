@@ -1,3 +1,4 @@
+__pycache__/
 mpu9250/
 bmp280-python/
-
+*.pyc
