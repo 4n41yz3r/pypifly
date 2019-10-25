@@ -1,3 +1,4 @@
-smbus2
 i2cdevice
+smbus2
 bmp280
+ahrs
