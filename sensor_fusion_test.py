@@ -17,8 +17,8 @@ try:
         a = list(imu.accel)
         g = list(map(lambda x: x*DEG2RAD, imu.gyro))
         m = list(imu.mag)
-        #q = mw.updateIMU(g, a, q)
-        q = mw.updateMARG(g, a, m, q)
+        q = mw.updateIMU(g, a, q)
+        #q = mw.updateMARG(g, a, m, q)
         print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*(q)))
         sleep(0.1)
 except KeyboardInterrupt:
