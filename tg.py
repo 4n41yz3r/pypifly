@@ -12,11 +12,11 @@ try:
     imu = mpu9250()
     f = IterableFilter(MedianFilter, 20)
     while True:
-        a = imu.accel
-        #f.take(a)
+        g = imu.gyro
+        #f.take(g)
         #if f.new:
-        #    print('Accel: {:.3f} {:.3f} {:.3f} mg'.format(*(f.value)))
-        print('Accel: {:.3f} {:.3f} {:.3f} mg'.format(*(a)))
+        #    print('Gyro: {:.3f} {:.3f} {:.3f} dps'.format(*(f.value)))
+        print('Gyro: {:.3f} {:.3f} {:.3f} dps'.format(*g))
         sleep(0.02)
 except KeyboardInterrupt:
     print('bye ...')

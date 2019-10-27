@@ -1,4 +1,5 @@
 __pycache__/
 mpu9250/
 bmp280-python/
+madgwick_py/
 *.pyc
