@@ -7,13 +7,15 @@ from mpu9250 import mpu9250
 from time import sleep
 from signal_filter import MedianFilter
 from signal_filter import IterableFilter
-from compass_calibrator import DynamicCompassCalibrator
+from calibrator import DynamicCompassCalibrator
 
 imu = mpu9250()
 
 try:
     f = IterableFilter(MedianFilter, 10)
     clb = DynamicCompassCalibrator()
+    clb.min = [-4000, -4000, -4000]
+    clb.max = [4000, 4000, 4000]
     while True:
         m = imu.mag
         f.take(clb.correct(m))
