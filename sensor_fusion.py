@@ -16,7 +16,7 @@ def rad2deg(a):
 
 try:
     imu = mpu9250()
-    mw = Madgwick(frequency = 50)
+    mw = Madgwick(frequency = 50, beta = 1)
     q = [1, 0, 0, 0]
     while True:
         a = list(imu.accel)
