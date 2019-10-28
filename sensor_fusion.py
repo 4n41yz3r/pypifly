@@ -24,9 +24,9 @@ try:
         m = list(imu.mag)
         q = mw.updateIMU(g, a, q)
         #q = mw.updateMARG(g, a, m, q)
-        print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*q))
-        #a = q2euler(q)
-        #print('x:{:.3f} y:{:.3f} z:{:.3f}'.format(*rad2deg(a)))
+        #print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*q))
+        a = q2euler(q)
+        print('x:{:.3f} y:{:.3f} z:{:.3f}'.format(*rad2deg(a)))
         sleep(0.02)
 except KeyboardInterrupt:
     print('bye ...')

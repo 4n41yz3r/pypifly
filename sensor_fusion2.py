@@ -24,9 +24,9 @@ try:
         m = list(imu.mag)
         mw.update_imu(g, a)
         #mw.update(g, a, m)
-        print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*mw.quaternion))
-        #a = q2euler(mw.quaternion)
-        #print('x:{:.3f} y:{:.3f} z:{:.3f}'.format(*rad2deg(a)))
+        #print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*mw.quaternion))
+        a = mw.quaternion.to_euler_angles()
+        print('x:{:.3f} y:{:.3f} z:{:.3f}'.format(*rad2deg(a)))
         sleep(0.02)
 except KeyboardInterrupt:
     print('bye ...')
