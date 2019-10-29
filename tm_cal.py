@@ -12,12 +12,15 @@ from calibrator import DynamicCompassCalibrator
 imu = mpu9250()
 
 try:
+    dcc = DynamicCompassCalibrator()
     while True:
-        m = list(imu.mag)
-        m[0] = m[0]
-        m[1] = m[1]
-        m[2] = m[2]
-        print('Mag: {:.2f} {:.2f} {:.2f} mg'.format(*m))
+        m = imu.mag
+        m = dcc.correct(m)
+        print('Mag: {:.3f} {:.3f} {:.3f} mg'.format(*m))
+        print(dcc.min)
+        print(dcc.max)
+        print(dcc.offset)
+        print(dcc.scale)
         sleep(0.05)
 except KeyboardInterrupt:
     print('bye ...')
