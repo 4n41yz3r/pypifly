@@ -2,10 +2,10 @@
 
 class DynamicCompassCalibrator:
     def __init__(self):
-        self.min = [0] * 3
-        self.max = [0] * 3
-        self.offset = [0] * 3
-        self.scale = [1] * 3
+        self.min = [4800.0] * 3
+        self.max = [-4800.0] * 3
+        self.offset = [0.0] * 3
+        self.scale = [1.0] * 3
         self._new_extremes = False
 
     def correct(self, sensor):
@@ -41,6 +41,12 @@ class DynamicCompassCalibrator:
             (self.max[1] - self.min[1]) / 2,
             (self.max[2] - self.min[2]) / 2 \
         ]
+        if avg_delta[0] == 0:
+            avg_delta[0] = 0.00001
+        if avg_delta[1] == 0:
+            avg_delta[1] = 0.00001
+        if avg_delta[2] == 0:
+            avg_delta[2] = 0.00001
         bal = (avg_delta[0] + avg_delta[1] + avg_delta[2]) / 3
         self.scale = [ \
             bal / avg_delta[0],
