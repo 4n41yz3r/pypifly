@@ -14,6 +14,14 @@ import math
 def rad2deg(a):
     return list(map(lambda x: x*RAD2DEG, a))
 
+def show_rpy(v):
+    print('roll:{:+10.5f}'.format(v[0]), end=' ')
+    print('pitch:{:+10.5f}'.format(v[1]), end=' ')
+    print('yaw:{:+10.5f}'.format(v[2]))
+
+def show_q(q):
+    print('w:{:+10.5f} x:{:+10.5f} y:{:+10.5f} z:{:+10.5f}'.format(*q))
+
 try:
     imu = mpu9250()
     mw = Madgwick(frequency = 50, beta = 1)
@@ -24,9 +32,9 @@ try:
         m = list(imu.mag)
         q = mw.updateIMU(g, a, q)
         #q = mw.updateMARG(g, a, m, q)
-        #print('w:{:.3f} x:{:.3f} y:{:.3f} z:{:.3f}'.format(*q))
-        a = q2euler(q)
-        print('x:{:.3f} y:{:.3f} z:{:.3f}'.format(*rad2deg(a)))
+        #show_q(q)
+        a = rad2deg(q2euler(q))
+        show_rpy(a)
         sleep(0.02)
 except KeyboardInterrupt:
     print('bye ...')
