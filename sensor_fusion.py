@@ -8,6 +8,7 @@ from ahrs.filters import Madgwick
 from ahrs.common import DEG2RAD
 from ahrs.common import RAD2DEG
 from ahrs.common.orientation import q2euler
+from calibrator import DynamicCompassCalibrator
 from time import sleep
 import math
 
@@ -25,13 +26,15 @@ def show_q(q):
 try:
     imu = mpu9250()
     mw = Madgwick(frequency = 50, beta = 1)
+    dcc = DynamicCompassCalibrator()
     q = [1, 0, 0, 0]
     while True:
         a = list(imu.accel)
         g = list(map(lambda x: x*DEG2RAD, imu.gyro))
         m = list(imu.mag)
+        #m = dcc.correct(m)
         q = mw.updateIMU(g, a, q)
-        #q = mw.updateMARG(g, a, m, q)
+        #q = mw.updateMARG(g, a, [m[1], m[0], -m[2]], q)
         #show_q(q)
         a = rad2deg(q2euler(q))
         show_rpy(a)
